@@ -4,7 +4,7 @@ namespace CEC\HTML;
 use \CEC\HTML\Sentinel;
 use \CEC\HTML\Contracts\ChildNode;
 
-trait ChildNodeBehavior
+abstract class ChildNodeBehavior
 {
     protected $previous;
 
@@ -125,7 +125,7 @@ trait ChildNodeBehavior
         if (is_null($this->parent)) {
             return null;
         }
-        
+
         while ($node = array_pop($nodes)) {
             $node->remove();
             $node->next = $this->next;

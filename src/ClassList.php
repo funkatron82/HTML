@@ -4,120 +4,92 @@ namespace CEC\HTML;
 class ClassList
 {
     protected $element;
+    protected $tokens = [];
     public function __construct(Element $element)
     {
         $this->element = $element;
-    }
-
-    public function validate($class)
-    {
-        if (!preg_match('/^-?[_a-zA-Z]+[_a-zA-Z0-9-]*/', $class)) {
-            throw new \Exception('Invalid class name');
-        }
-    }
-
-    public function parse($text)
-    {
+        $text = $this->element->getAttribute('class');
         $text = trim($text);
-        if (!$text) {
-            return [];
-        }
         $tokens = preg_split('/\s+/', $text);
+        $tokens = array_filter($tokens);
         foreach ($tokens as $token) {
             $this->validate($token);
+            $this->tokens[$token] = $token;
         }
-        $tokens = array_keys(array_flip($tokens));
-        return array_combine($tokens, $tokens);
     }
 
-    public function read()
+    public function validate(string $token)
     {
-        $text = $this->element->getAttribute('class');
-        return $this->parse($text);
+        if (!preg_match('/^-?[_a-zA-Z]+[_a-zA-Z0-9-]*/', $token)) {
+            throw new \Exception('Invalid class name: ' . $token);
+        }
     }
 
-    public function serialize($tokens)
+    public function update()
     {
-        return implode(' ', $tokens);
-    }
-
-    public function write($tokens)
-    {
-        $text = $this->serialize($tokens);
+        $text = implode(' ', $this->tokens);
         $this->element->setAttribute('class', $text);
     }
 
-    public function add(...$classes)
+    public function add(string ...$tokens)
     {
-        $tokens = $this->read();
-
-        foreach ($classes as $class) {
-            $this->validate($class);
-            $tokens[$class] = $class;
+        foreach ($tokens as $token) {
+            $this->validate($token);
+            $this->tokens[$token] = $token;
         }
-        $this->write($tokens);
+        $this->update();
         return $this;
     }
 
-    public function remove(...$classes)
+    public function remove(string ...$tokens)
     {
-        $tokens = $this->read();
-        foreach ($classes as $class) {
-            $this->validate($class);
-            unset($tokens[$class]);
+        foreach ($tokens as $token) {
+            $this->validate($token);
+            unset($this->tokens[$token]);
         }
-        $this->write($tokens);
+        $this->update();
         return $this;
     }
 
     public function removeAll()
     {
-        $this->write([]);
+        $this->tokens = [];
+        $this->update();
         return $this;
     }
 
-    public function contains($class)
+    public function contains(string $token)
     {
-        $tokens = $this->read();
-        $this->validate($class);
-        return (isset($tokens[$class]));
+        $this->validate($token);
+        return (isset($this->tokens[$token]));
     }
 
-    public function toggle($class, $force = null)
+    public function toggle(string $token, bool $force = null)
     {
-        $tokens = $this->read();
-        $this->validate($class);
-        if (isset($tokens[$class])) {
-            if (!force) {
-                unset($tokens[$class]);
-                $this->write($tokens);
+        if ($this->contains($token)) {
+            if (!$force) {
+                $this->remove($token);
                 return false;
             }
 
             return true;
         }
 
-        if (force === false) {
+        if ($force === false) {
             return false;
         }
 
-        $tokens[$class] = $class;
-        $this->write($tokens);
+        $this->add($token);
         return true;
     }
 
-    public function replace($old, $new)
+    public function replace(string $oldToken, string $newToken)
     {
-        $this->validate($old);
-        $this->validate($new);
-        $tokens = $this->read();
-
-        if (!isset($tokens[$old])) {
-            return;
+        if (!$this->contains($oldToken)) {
+            return false;
         }
-        unset($tokens[$old]);
-        $tokens[$new] = $new;
-        $this->write($tokens);
-        return $this;
+        $this->remove($oldToken);
+        $this->add($newToken);
+        return true;
     }
 }

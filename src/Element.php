@@ -4,33 +4,22 @@ namespace CEC\HTML;
 use CEC\HTML\Contracts\Renderable;
 use CEC\HTML\Contracts\ChildNode;
 use CEC\HTML\Contracts\ParentNode;
+use CEC\HTML\Sentinel;
 
-class Element extends Node implements ChildNode, ParentNode, Renderable
+class Element extends ChildNodeBehavior implements ChildNode, ParentNode, Renderable
 {
     use ParentNodeBehavior;
-    use Attributes;
-    protected $tagName;
-    protected $classList;
+    use ElementBehavior;
 
-    public function __construct($tagName)
+    public function __construct(string $tagName, Sentinel $sentinel)
     {
         $this->setTagName($tagName);
-        $this->sentinel = new Sentinel($this);
-        $this->classList = new ClassList($this);
+        $this->setSentinel($sentinel);
     }
 
-    public function classList()
+    public static function create(string $tagName)
     {
-        return $this->classList;
-    }
-
-    protected function setTagName($tagName)
-    {
-        $tagName = strtolower($tagName);
-        if (preg_match("/[^a-z0-9]/", $tagName)) {
-            throw new Exception("Invalid character in tag name.");
-        }
-        $this->tagName = $tagName;
+        return new Element($tagName, new Sentinel());
     }
 
     public function renderOpenTag()
@@ -47,7 +36,9 @@ class Element extends Node implements ChildNode, ParentNode, Renderable
     {
         $output = '';
         foreach ($this->children() as $child) {
-            $output .= $child->render();
+            if ($child instanceof Renderable) {
+                $output .= $child->render();
+            }
         }
 
         return $output;
@@ -55,8 +46,6 @@ class Element extends Node implements ChildNode, ParentNode, Renderable
 
     public function render()
     {
-        $template = in_array($this->tagName, ['input', 'img', 'hr', 'br', 'meta', 'link', 'area', 'base', 'col', 'embed', 'param', 'source', 'track', 'wbr']) ? '%s' : '%s%s%s';
-
-        return sprintf($template, $this->renderOpenTag(), $this->renderChildren(), $this->renderCloseTag());
+        return sprintf('%s%s%s', $this->renderOpenTag(), $this->renderChildren(), $this->renderCloseTag());
     }
 }

@@ -1,7 +1,7 @@
 <?php
 namespace CEC\HTML;
 
-class Sentinel extends Node
+class Sentinel extends ChildNodeBehavior
 {
     public function __construct($parent = null)
     {

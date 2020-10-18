@@ -8,6 +8,12 @@ trait ParentNodeBehavior
 {
     protected $sentinel;
 
+    public function setSentinel(Sentinel $sentinel)
+    {
+        $this->sentinel = $sentinel;
+        $this->sentinel->parent = $this;
+    }
+
     public function append(ChildNode ...$nodes)
     {
         $this->sentinel->insertBefore(...$nodes);
