@@ -7,6 +7,16 @@ interface ChildNode
 
     public function nextSibling();
 
+    public function siblings(callable $where = null);
+
+    public function sibling(callable $where);
+
+    public function ancestors(callable $where = null);
+
+    public function ancestor(callable $where);
+
+    public function root();
+
     public function remove();
 
     public function insertBefore(ChildNode ...$nodes);
