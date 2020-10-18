@@ -1,42 +1,35 @@
 <?php
+use \CEC\HTML\Html;
+
+include_once 'vendor' . DIRECTORY_SEPARATOR . 'LoremIpsum.php';
 spl_autoload_register(function ($class) {
-    if (false === strpos($class, "CEC\\View")) {
+    if (false === strpos($class, "CEC\\HTML")) {
         return;
     }
 
-    $class = str_replace("CEC\\View", '', $class);
+    $class = str_replace("CEC\\HTML", '', $class);
     $class = ltrim($class, "\\");
 
     $class      = str_replace('\\', DIRECTORY_SEPARATOR, $class);
-    $classpath  = dirname(__FILE__) .  DIRECTORY_SEPARATOR . $class . '.php';
+    $classpath  = dirname(__FILE__) .  DIRECTORY_SEPARATOR . 'src' .  DIRECTORY_SEPARATOR . $class . '.php';
 
     if (file_exists($classpath)) {
         include_once $classpath;
     }
 });
 
+$div = Html::createElement('div');
+$lorem = new joshtronic\LoremIpsum();
 
-$div = new \CEC\HTML\Element('div');
-for ($i = 0; $i <10; $i++) {
-    $p = new \CEC\HTML\Element('p');
-    $p->append(new \CEC\HTML\Text('Text  #' . $i));
-    $div->append($p);
+for ($i =0; $i<10; $i++) {
+    $temp = Html::createElement('article')->setAttribute('class', 'stuff');
+    $head = Html::createElement('h1');
+    $head->append(Html::createText($lorem->words(5)));
+    $temp->append($head);
+    $para = Html::createElement('p');
+    $para->append(Html::createText($lorem->paragraphs(1)));
+    $temp->append($para);
+    $div->append($temp);
 }
-$div->append(new \CEC\HTML\Text('End'));
-$div->prepend(new \CEC\HTML\Text('Start'));
-$div->classList()->add('spoon', 'win', 'foo', 'bar')->remove('bar');
-$text = new \CEC\HTML\Fields\Text();
 
-foreach ($div->firstChild()->siblings() as $sibling) {
-    //echo var_dump($sibling);
-}
-echo($text->render());
-
-echo var_dump(class_implements($div));
-echo var_dump(class_parents($div));
-$options = ['win'=>'fun', 'lose'=>'notfun'];
-['win' => $fun] = $options;
-$expirationDate = (new DateTimeImmutable())
-    ->modify('+14 days')
-    ->setTime(0, 0, 0);
-echo var_dump($expirationDate);
+echo($div->render());
