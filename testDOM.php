@@ -26,6 +26,7 @@ for ($i =0; $i<10; $i++) {
     $head = Html::createElement('h1');
     $head->append(Html::createText($lorem->words(5)));
     $temp->append($head);
+    $temp->append(Html::createElement('input'));
     $para = Html::createElement('p');
     $para->append(Html::createText($lorem->paragraphs(1)));
     $temp->append($para);

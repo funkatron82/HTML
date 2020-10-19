@@ -84,7 +84,7 @@ trait ElementBehavior
         return new ClassList($this);
     }
 
-    protected function setTagName($tagName)
+    public function setTagName($tagName)
     {
         $tagName = strtolower($tagName);
         if (preg_match("/[^a-z0-9]/", $tagName)) {
