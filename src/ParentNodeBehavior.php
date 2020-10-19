@@ -34,7 +34,7 @@ trait ParentNodeBehavior
         return $this->sentinel->previousSibling() ;
     }
 
-    public function children(callable $where = null)
+    public function children(callable $where = null): \Generator
     {
         $next = $this->firstChild();
         while ($next) {
@@ -53,7 +53,7 @@ trait ParentNodeBehavior
         return null;
     }
 
-    public function descendents(callable $where = null)
+    public function descendents(callable $where = null): \Generator
     {
         $next = $this->firstChild();
         while ($next) {

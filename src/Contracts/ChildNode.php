@@ -7,11 +7,11 @@ interface ChildNode
 
     public function nextSibling();
 
-    public function siblings(callable $where = null);
+    public function siblings(callable $where = null): \Generator;
 
     public function sibling(callable $where);
 
-    public function ancestors(callable $where = null);
+    public function ancestors(callable $where = null): \Generator;
 
     public function ancestor(callable $where);
 

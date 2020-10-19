@@ -11,11 +11,11 @@ interface ParentNode
 
     public function lastChild();
 
-    public function children(callable $where = null);
+    public function children(callable $where = null): \Generator;
 
     public function child(callable $where);
 
-    public function descendents(callable $where = null);
+    public function descendents(callable $where = null): \Generator;
 
     public function descendent(callable $where);
 

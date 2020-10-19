@@ -33,7 +33,7 @@ abstract class ChildNodeBehavior
         return ($this->next instanceof Sentinel) ? null : $this->next;
     }
 
-    public function siblings(callable $where = null)
+    public function siblings(callable $where = null): \Generator
     {
         if (is_null($this->parent)) {
             return;
@@ -67,7 +67,7 @@ abstract class ChildNodeBehavior
         return $p;
     }
 
-    public function ancestors(callable $where = null)
+    public function ancestors(callable $where = null): \Generator
     {
         $p = $this;
         while ($p->parent) {
