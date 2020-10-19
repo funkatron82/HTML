@@ -75,7 +75,7 @@ trait ParentNodeBehavior
         return null;
     }
 
-    public function count()
+    public function count(): int
     {
         $count = 0;
         $next = $this->firstChild();

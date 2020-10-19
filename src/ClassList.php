@@ -1,6 +1,8 @@
 <?php
 namespace CEC\HTML;
 
+use CEC\HTML\Contracts\Element;
+
 class ClassList
 {
     protected $element;
