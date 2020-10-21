@@ -16,21 +16,21 @@ class Text extends ChildNodeBehavior implements Renderable, ChildNode
         $this->setContent($content);
     }
 
-    public static function create($content)
-    {
-        return new Text($content);
-    }
-
     public function setContent(string $content)
     {
         $this->content = htmlspecialchars((string) $content, ENT_COMPAT | ENT_HTML5);
+    }
+
+    public function textContent(): string
+    {
+        return $this->content;
     }
 
     /**
      * Returns a string
      * @return  string string representation of object
      */
-    public function render()
+    public function render(): string
     {
         return $this->content;
     }

@@ -8,7 +8,7 @@ use CEC\HTML\Contracts\Element;
 
 class Html
 {
-    public static function createElement(string $tagName)
+    public static function createElement(string $tagName): Element
     {
         if (in_array(strtolower($tagName), ['input', 'img', 'hr', 'br', 'meta', 'link', 'area', 'base', 'col', 'embed', 'param', 'source', 'track', 'wbr'])) {
             return new class($tagName) extends ChildNodeBehavior implements Element, ChildNode, Renderable {
@@ -19,7 +19,7 @@ class Html
                     $this->setTagName($tagName);
                 }
 
-                public function render()
+                public function render(): string
                 {
                     return sprintf("<%s%s />", $this->tagName, $this->renderAttributes());
                 }
@@ -36,7 +36,7 @@ class Html
                 $this->setSentinel($sentinel);
             }
 
-            public function render()
+            public function render(): string
             {
                 $renderedChildren = '';
                 foreach ($this->children() as $child) {
@@ -49,8 +49,8 @@ class Html
         };
     }
 
-    public static function createText(string $content)
+    public static function createText(string $content): Text
     {
-        return Text::create($content);
+        return new Text($content);
     }
 }

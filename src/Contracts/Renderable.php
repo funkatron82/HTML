@@ -10,5 +10,5 @@ interface Renderable
      * Returns a string
      * @return  string string representation of object
      */
-    public function render();
+    public function render(): string;
 }
