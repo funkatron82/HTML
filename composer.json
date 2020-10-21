@@ -1,0 +1,25 @@
+{
+    "name": "funkatron82/html",
+    "description": "Library for generating HTML in PHP",
+    "homepage": "https://github.com/funkatron82/HTML",
+    "license": "MIT",
+
+    "authors": [
+        {
+            "name": "Manny Fleurmond",
+            "email": "funkatronic@gmail.com",
+            "homepage": "http://crosseyecode.com"
+        }
+    ],
+
+    "autoload": {
+        "psr-4": {
+            "CEC\\HTML\\": "src/",
+            "CEC\\HTML\\Tests\\": "tests/"
+        }
+    },
+
+    "require-dev": {
+      "joshtronic/php-loremipsum": "dev-master"
+    }
+}
