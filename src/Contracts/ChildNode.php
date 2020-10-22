@@ -3,19 +3,21 @@ namespace CEC\HTML\Contracts;
 
 interface ChildNode
 {
-    public function previousSibling();
+    public function parent(): ?ParentNode;
 
-    public function nextSibling();
+    public function previousSibling(): ?ChildNode;
+
+    public function nextSibling(): ?ChildNode;
 
     public function siblings(callable $where = null): \Generator;
 
-    public function sibling(callable $where);
+    public function sibling(callable $where): ?ChildNode;
 
     public function ancestors(callable $where = null): \Generator;
 
-    public function ancestor(callable $where);
+    public function ancestor(callable $where): ?ParentNode;
 
-    public function root();
+    public function root(): ParentNode;
 
     public function remove();
 

@@ -24,14 +24,14 @@ trait ParentNodeBehavior
         $this->sentinel->insertAfter(...$nodes);
     }
 
-    public function firstChild()
+    public function firstChild(): ?ChildNode
     {
-        return $this->sentinel->nextSibling() ;
+        return $this->sentinel->nextSibling();
     }
 
-    public function lastChild()
+    public function lastChild(): ?ChildNode
     {
-        return $this->sentinel->previousSibling() ;
+        return $this->sentinel->previousSibling();
     }
 
     public function children(callable $where = null): \Generator
@@ -45,7 +45,7 @@ trait ParentNodeBehavior
         }
     }
 
-    public function child(callable $where)
+    public function child(callable $where): ?ChildNode
     {
         foreach ($this->children($where) as $child) {
             return $child;
@@ -67,7 +67,7 @@ trait ParentNodeBehavior
         }
     }
 
-    public function descendent(callable $where)
+    public function descendent(callable $where): ?ChildNode
     {
         foreach ($this->descendents($where) as $descendent) {
             return $descendent;

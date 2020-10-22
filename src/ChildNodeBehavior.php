@@ -12,12 +12,12 @@ abstract class ChildNodeBehavior
 
     protected $parent;
 
-    public function parent()
+    public function parent(): ?ParentNode
     {
         return $this->parent;
     }
 
-    public function previousSibling()
+    public function previousSibling(): ?ChildNode
     {
         if (is_null($this->parent)) {
             return null;
@@ -25,7 +25,7 @@ abstract class ChildNodeBehavior
         return ($this->previous instanceof Sentinel) ? null : $this->previous;
     }
 
-    public function nextSibling()
+    public function nextSibling(): ?ChildNode
     {
         if (is_null($this->parent)) {
             return null;
@@ -49,7 +49,7 @@ abstract class ChildNodeBehavior
         }
     }
 
-    public function sibling(callable $where)
+    public function sibling(callable $where): ?ChildNode
     {
         foreach ($this->siblings($where) as $sibling) {
             return $sibling;
@@ -58,7 +58,7 @@ abstract class ChildNodeBehavior
         return null;
     }
 
-    public function root()
+    public function root(): ParentNode
     {
         $p = $this;
         while ($p->parent) {
@@ -78,7 +78,7 @@ abstract class ChildNodeBehavior
         }
     }
 
-    public function ancestor(callable $where)
+    public function ancestor(callable $where): ?ParentNode
     {
         foreach ($this->ancestors($where) as $ancestor) {
             return $ancestor;
@@ -123,7 +123,7 @@ abstract class ChildNodeBehavior
     public function insertAfter(ChildNode ...$nodes)
     {
         if (is_null($this->parent)) {
-            return null;
+            return;
         }
 
         while ($node = array_pop($nodes)) {

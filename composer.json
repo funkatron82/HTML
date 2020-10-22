@@ -18,6 +18,9 @@
             "CEC\\HTML\\Tests\\": "tests/"
         }
     },
+    "require": {
+      "php": ">=7.2.5",
+    },
 
     "require-dev": {
       "joshtronic/php-loremipsum": "dev-master"

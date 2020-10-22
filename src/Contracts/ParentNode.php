@@ -7,17 +7,17 @@ interface ParentNode
 
     public function prepend(ChildNode ...$nodes);
 
-    public function firstChild();
+    public function firstChild(): ?ChildNode;
 
-    public function lastChild();
+    public function lastChild(): ?ChildNode;
 
     public function children(callable $where = null): \Generator;
 
-    public function child(callable $where);
+    public function child(callable $where): ?ChildNode;
 
     public function descendents(callable $where = null): \Generator;
 
-    public function descendent(callable $where);
+    public function descendent(callable $where): ?ChildNode;
 
-    public function count();
+    public function count(): int;
 }
