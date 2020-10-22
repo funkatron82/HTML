@@ -3,6 +3,7 @@ namespace CEC\HTML;
 
 use \CEC\HTML\Sentinel;
 use \CEC\HTML\Contracts\ChildNode;
+use \CEC\HTML\Contracts\ParentNode;
 
 trait ParentNodeBehavior
 {
