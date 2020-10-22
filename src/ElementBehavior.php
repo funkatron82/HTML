@@ -6,11 +6,11 @@ trait ElementBehavior
     protected $attributes = [];
     protected $tagName;
 
-    public function getAttribute(string $name)
+    public function getAttribute(string $name): string
     {
         $name = $this->validateAttributeName($name);
 
-        return $this->attributes[$name] ?? null;
+        return $this->attributes[$name] ?? '';
     }
 
     public function setAttribute(string $name, $value)
@@ -79,7 +79,7 @@ trait ElementBehavior
         });
     }
 
-    public function classList()
+    public function classList(): ClassList
     {
         return new ClassList($this);
     }
