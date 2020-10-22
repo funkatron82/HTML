@@ -61,20 +61,20 @@ abstract class ChildNodeBehavior
 
     public function root(): ParentNode
     {
-        $p = $this;
-        while ($p->parent) {
-            $p = $p->parent;
+        $root = $this;
+        while ($root->parent) {
+            $root = $root->parent;
         }
-        return $p;
+        return $root;
     }
 
     public function ancestors(callable $where = null): \Generator
     {
-        $p = $this;
-        while ($p->parent) {
-            $p = $p->parent;
+        $parent = $this;
+        while ($parent->parent) {
+            $parent = $parent->parent;
             if ($where === null || $where($p)) {
-                yield $p;
+                yield $parent;
             }
         }
     }
