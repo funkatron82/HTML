@@ -53,4 +53,9 @@ class Html
     {
         return new Text($content);
     }
+
+    public static function createComment(string $comment): Comment
+    {
+        return new Comment($comment);
+    }
 }
