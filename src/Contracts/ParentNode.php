@@ -3,10 +3,6 @@ namespace CEC\HTML\Contracts;
 
 interface ParentNode
 {
-    public function append(ChildNode ...$nodes);
-
-    public function prepend(ChildNode ...$nodes);
-
     public function firstChild(): ?ChildNode;
 
     public function lastChild(): ?ChildNode;
@@ -20,4 +16,8 @@ interface ParentNode
     public function descendent(callable $where): ?ChildNode;
 
     public function count(): int;
+
+    public function append(ChildNode ...$nodes);
+
+    public function prepend(ChildNode ...$nodes);
 }

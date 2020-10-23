@@ -3,35 +3,22 @@ namespace CEC\HTML;
 
 use CEC\HTML\Contracts\Renderable;
 use CEC\HTML\Contracts\ChildNode;
+use CEC\HTML\Contracts\CharacterData;
 
 /**
  * A renderable object that renders into text
  */
-class Text extends ChildNodeBehavior implements Renderable, ChildNode
+class Text extends ChildNodeBehavior implements Renderable, ChildNode, CharacterData
 {
-    protected $content;
+    use CharacterDataBehavior;
 
-    public function __construct(string $content)
+    public function __construct($data)
     {
-        $this->setContent($content);
+        $this->appendData($data);
     }
 
-    public function setContent(string $content)
-    {
-        $this->content = htmlspecialchars((string) $content, ENT_COMPAT | ENT_HTML5);
-    }
-
-    public function textContent(): string
-    {
-        return $this->content;
-    }
-
-    /**
-     * Returns a string
-     * @return  string string representation of object
-     */
     public function render(): string
     {
-        return $this->content;
+        return $this->data;
     }
 }

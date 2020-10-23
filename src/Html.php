@@ -5,6 +5,7 @@ use CEC\HTML\Contracts\Renderable;
 use CEC\HTML\Contracts\ChildNode;
 use CEC\HTML\Contracts\ParentNode;
 use CEC\HTML\Contracts\Element;
+use CEC\HTML\Contracts\CharacterData;
 
 class Html
 {
@@ -49,13 +50,13 @@ class Html
         };
     }
 
-    public static function createText(string $content): Text
+    public static function createText(string $data): Text
     {
-        return new Text($content);
+        return new Text($data);
     }
 
-    public static function createComment(string $comment): Comment
+    public static function createComment(string $data): Comment
     {
-        return new Comment($comment);
+        return new Comment($data);
     }
 }
