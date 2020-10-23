@@ -17,14 +17,14 @@ trait CharacterDataBehavior
 
     public function insertData(int $offset, string $data)
     {
-        $data = htmlspecialchars((string) $data, ENT_COMPAT | ENT_HTML5);
-        $this->data = substr_replace($this->data, $data, $offset, 0);
+        $data = substr_replace($this->data, $data, $offset, 0);
+        $this->data = htmlspecialchars((string) $data, ENT_COMPAT | ENT_HTML5);
     }
 
     public function replaceData(int $offset, int $length, string $data)
     {
-        $data = htmlspecialchars((string) $data, ENT_COMPAT | ENT_HTML5);
-        $this->data = substr_replace($this->data, $data, $offset, $length);
+        $data = substr_replace($this->data, $data, $offset, $length);
+        $this->data  = htmlspecialchars((string) $data, ENT_COMPAT | ENT_HTML5);
     }
 
     public function substringData(int $offset, int $length): string

@@ -21,9 +21,7 @@ class Text extends ChildNodeBehavior implements Renderable, ChildNode, Character
     {
         $split = new static(substr($this->data, $offset));
         $this->deleteData($offset);
-        if ($this->parent) {
-            $this->addAfter($split);
-        }
+        $this->addAfter($split);
         return $split;
     }
 
