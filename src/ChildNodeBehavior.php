@@ -105,7 +105,7 @@ abstract class ChildNodeBehavior
         }
     }
 
-    public function insertBefore(ChildNode ...$nodes)
+    public function addBefore(ChildNode ...$nodes)
     {
         if (is_null($this->parent)) {
             return;
@@ -121,7 +121,7 @@ abstract class ChildNodeBehavior
         }
     }
 
-    public function insertAfter(ChildNode ...$nodes)
+    public function addAfter(ChildNode ...$nodes)
     {
         if (is_null($this->parent)) {
             return;
@@ -139,7 +139,7 @@ abstract class ChildNodeBehavior
 
     public function replaceWith(ChildNode ...$nodes)
     {
-        $this->insertAfter(...$nodes);
+        $this->addAfter(...$nodes);
         $this->remove();
     }
 }

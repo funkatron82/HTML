@@ -17,12 +17,12 @@ trait ParentNodeBehavior
 
     public function append(ChildNode ...$nodes)
     {
-        $this->sentinel->insertBefore(...$nodes);
+        $this->sentinel->addBefore(...$nodes);
     }
 
     public function prepend(ChildNode ...$nodes)
     {
-        $this->sentinel->insertAfter(...$nodes);
+        $this->sentinel->addAfter(...$nodes);
     }
 
     public function firstChild(): ?ChildNode
