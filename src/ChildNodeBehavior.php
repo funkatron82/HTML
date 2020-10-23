@@ -20,7 +20,7 @@ abstract class ChildNodeBehavior
 
     public function previousSibling(): ?ChildNode
     {
-        if (is_null($this->parent)) {
+        if (!($this->parent instanceof ParentNode)) {
             return null;
         }
         return ($this->previous instanceof Sentinel) ? null : $this->previous;
@@ -28,7 +28,7 @@ abstract class ChildNodeBehavior
 
     public function nextSibling(): ?ChildNode
     {
-        if (is_null($this->parent)) {
+        if (!($this->parent instanceof ParentNode)) {
             return null;
         }
         return ($this->next instanceof Sentinel) ? null : $this->next;
@@ -36,7 +36,7 @@ abstract class ChildNodeBehavior
 
     public function siblings(callable $where = null): \Generator
     {
-        if (is_null($this->parent)) {
+        if (!($this->parent instanceof ParentNode)) {
             return;
         }
 
@@ -90,7 +90,7 @@ abstract class ChildNodeBehavior
 
     public function remove()
     {
-        if (is_null($this->parent)) {
+        if (!($this->parent instanceof ParentNode)) {
             return;
         }
 
@@ -107,7 +107,7 @@ abstract class ChildNodeBehavior
 
     public function addBefore(ChildNode ...$nodes)
     {
-        if (is_null($this->parent)) {
+        if (!($this->parent instanceof ParentNode)) {
             return;
         }
 
@@ -123,7 +123,7 @@ abstract class ChildNodeBehavior
 
     public function addAfter(ChildNode ...$nodes)
     {
-        if (is_null($this->parent)) {
+        if (!($this->parent instanceof ParentNode)) {
             return;
         }
 
