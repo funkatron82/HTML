@@ -12,7 +12,7 @@ trait ParentNodeBehavior
     public function setSentinel(Sentinel $sentinel)
     {
         $this->sentinel = $sentinel;
-        $this->sentinel->parent = $this;
+        $this->sentinel->setParent($this);
     }
 
     public function append(ChildNode ...$nodes)
