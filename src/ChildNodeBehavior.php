@@ -62,7 +62,7 @@ abstract class ChildNodeBehavior
     public function root(): ParentNode
     {
         $root = $this;
-        while ($root->parent) {
+        while ($root instanceof ChildNode && $root->parent) {
             $root = $root->parent;
         }
         return $root;
@@ -70,12 +70,12 @@ abstract class ChildNodeBehavior
 
     public function ancestors(callable $where = null): \Generator
     {
-        $parent = $this;
-        while ($parent->parent) {
-            $parent = $parent->parent;
+        $parent = $this->parent;
+        while ($parent instanceof ChildNode) {
             if ($where === null || $where($p)) {
                 yield $parent;
             }
+            $parent = $parent->parent;
         }
     }
 
@@ -93,7 +93,7 @@ abstract class ChildNodeBehavior
         if (!($this->parent instanceof ParentNode)) {
             return;
         }
-        
+
         $this->next->previous = $this->previous;
         $this->previous->next = $this->next;
 
