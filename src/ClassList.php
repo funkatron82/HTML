@@ -14,10 +14,7 @@ class ClassList
         $text = trim($text);
         $tokens = preg_split('/\s+/', $text);
         $tokens = array_filter($tokens);
-        foreach ($tokens as $token) {
-            $this->validate($token);
-            $this->tokens[$token] = $token;
-        }
+        $this->add($tokens);
     }
 
     public function validate(string $token)
@@ -33,7 +30,7 @@ class ClassList
         $this->element->setAttribute('class', $text);
     }
 
-    public function add(string ...$tokens)
+    public function add(string ...$tokens): self
     {
         foreach ($tokens as $token) {
             $this->validate($token);
@@ -43,7 +40,7 @@ class ClassList
         return $this;
     }
 
-    public function remove(string ...$tokens)
+    public function remove(string ...$tokens): self
     {
         foreach ($tokens as $token) {
             $this->validate($token);
@@ -53,20 +50,20 @@ class ClassList
         return $this;
     }
 
-    public function removeAll()
+    public function removeAll(): self
     {
         $this->tokens = [];
         $this->update();
         return $this;
     }
 
-    public function contains(string $token)
+    public function contains(string $token): bool
     {
         $this->validate($token);
         return (isset($this->tokens[$token]));
     }
 
-    public function toggle(string $token, bool $force = null)
+    public function toggle(string $token, bool $force = null):bool
     {
         if ($this->contains($token)) {
             if (!$force) {
@@ -85,7 +82,7 @@ class ClassList
         return true;
     }
 
-    public function replace(string $oldToken, string $newToken)
+    public function replace(string $oldToken, string $newToken): bool
     {
         if (!$this->contains($oldToken)) {
             return false;
