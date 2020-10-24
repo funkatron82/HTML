@@ -93,7 +93,7 @@ abstract class ChildNodeBehavior
         if (!($this->parent instanceof ParentNode)) {
             return;
         }
-
+        
         $this->next->previous = $this->previous;
         $this->previous->next = $this->next;
 

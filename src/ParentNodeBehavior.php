@@ -61,9 +61,13 @@ trait ParentNodeBehavior
             if ($where === null || $where($next)) {
                 yield $next;
             }
-            foreach ($next->descendents($where) as $descendent) {
-                yield $descendent;
+            
+            if ($next instanceof ParentNode) {
+                foreach ($next->descendents($where) as $descendent) {
+                    yield $descendent;
+                }
             }
+
             $next = $next->nextSibling();
         }
     }
