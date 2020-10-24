@@ -9,11 +9,11 @@ interface ParentNode
 
     public function children(callable $where = null): \Generator;
 
-    public function child(callable $where): ?ChildNode;
+    public function child(callable $where = null): ?ChildNode;
 
     public function descendents(callable $where = null): \Generator;
 
-    public function descendent(callable $where): ?ChildNode;
+    public function descendent(callable $where = null): ?ChildNode;
 
     public function count(): int;
 

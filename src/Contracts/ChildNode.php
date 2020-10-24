@@ -11,11 +11,11 @@ interface ChildNode
 
     public function siblings(callable $where = null): \Generator;
 
-    public function sibling(callable $where): ?ChildNode;
+    public function sibling(callable $where = null): ?ChildNode;
 
     public function ancestors(callable $where = null): \Generator;
 
-    public function ancestor(callable $where): ?ParentNode;
+    public function ancestor(callable $where = null): ?ParentNode;
 
     public function root(): ParentNode;
 

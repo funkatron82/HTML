@@ -46,7 +46,7 @@ trait ParentNodeBehavior
         }
     }
 
-    public function child(callable $where): ?ChildNode
+    public function child(callable $where = null): ?ChildNode
     {
         foreach ($this->children($where) as $child) {
             return $child;
@@ -61,7 +61,7 @@ trait ParentNodeBehavior
             if ($where === null || $where($next)) {
                 yield $next;
             }
-            
+
             if ($next instanceof ParentNode) {
                 foreach ($next->descendents($where) as $descendent) {
                     yield $descendent;
@@ -72,7 +72,7 @@ trait ParentNodeBehavior
         }
     }
 
-    public function descendent(callable $where): ?ChildNode
+    public function descendent(callable $where = null): ?ChildNode
     {
         foreach ($this->descendents($where) as $descendent) {
             return $descendent;

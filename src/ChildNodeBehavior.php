@@ -50,7 +50,7 @@ abstract class ChildNodeBehavior
         }
     }
 
-    public function sibling(callable $where): ?ChildNode
+    public function sibling(callable $where = null): ?ChildNode
     {
         foreach ($this->siblings($where) as $sibling) {
             return $sibling;
@@ -79,7 +79,7 @@ abstract class ChildNodeBehavior
         }
     }
 
-    public function ancestor(callable $where): ?ParentNode
+    public function ancestor(callable $where = null): ?ParentNode
     {
         foreach ($this->ancestors($where) as $ancestor) {
             return $ancestor;
