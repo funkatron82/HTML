@@ -94,15 +94,12 @@ abstract class ChildNodeBehavior
             return;
         }
 
+        $this->next->previous = $this->previous;
+        $this->previous->next = $this->next;
+
         $this->parent = null;
-        if ($this->next instanceof ChildNode) {
-            $this->next->previous = $this->previous;
-            $this->next = null;
-        }
-        if ($this->previous instanceof ChildNode) {
-            $this->previous->next = $this->next;
-            $this->previous = null;
-        }
+        $this->next = null;
+        $this->previous = null;
     }
 
     public function addBefore(ChildNode ...$nodes)
