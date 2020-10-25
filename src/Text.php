@@ -25,6 +25,23 @@ class Text extends ChildNodeBehavior implements Renderable, ChildNode, Character
         return $split;
     }
 
+    public function wholeText()
+    {
+        $current = $this;
+        $wholeText = '';
+
+        while ($current->previousSibling() instanceof Text) {
+            $current = $current->previousSibling();
+        }
+
+        while ($current instanceof Text) {
+            $wholeText .= $current->data;
+            $current = $current->nextSibling();
+        }
+
+        return $wholeText;
+    }
+
     public function render(): string
     {
         return $this->data;
