@@ -30,7 +30,7 @@ class ClassList
         $this->element->setAttribute('class', $text);
     }
 
-    public function add(string ...$tokens): self
+    public function add(string ...$tokens): ClassList
     {
         foreach ($tokens as $token) {
             $this->validate($token);
@@ -40,7 +40,7 @@ class ClassList
         return $this;
     }
 
-    public function remove(string ...$tokens): self
+    public function remove(string ...$tokens): ClassList
     {
         foreach ($tokens as $token) {
             $this->validate($token);
@@ -50,7 +50,7 @@ class ClassList
         return $this;
     }
 
-    public function removeAll(): self
+    public function removeAll(): ClassList
     {
         $this->tokens = [];
         $this->update();

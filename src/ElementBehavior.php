@@ -78,7 +78,7 @@ trait ElementBehavior
     {
         return array_reduce(array_keys($this->attributes), function ($renderString, $key) {
             return $renderString . $this->renderAttribute($key);
-        }) ?? '';
+        }, '');
     }
 
     public function classList(): ClassList

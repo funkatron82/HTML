@@ -7,11 +7,11 @@ interface Element
 {
     public function getAttribute(string $name): string;
 
-    public function setAttribute(string $name, $value): self;
+    public function setAttribute(string $name, $value): Element;
 
-    public function removeAttribute(string $name): self;
+    public function removeAttribute(string $name): Element;
 
-    public function setAttributes(array $attributes): self;
+    public function setAttributes(array $attributes): Element;
 
     public function hasAttribute(string $name): bool;
 
