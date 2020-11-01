@@ -1,6 +1,8 @@
 <?php
 namespace CEC\HTML;
 
+use CEC\HTML\Contracts\Element;
+
 trait ElementBehavior
 {
     protected $attributes = [];
@@ -13,7 +15,7 @@ trait ElementBehavior
         return $this->attributes[$name] ?? '';
     }
 
-    public function setAttribute(string $name, $value)
+    public function setAttribute(string $name, $value): Element
     {
         $name = $this->validateAttributeName($name);
         if (is_bool($value) || null === $value) {
@@ -25,14 +27,14 @@ trait ElementBehavior
         return $this;
     }
 
-    public function removeAttribute(string $name)
+    public function removeAttribute(string $name): Element
     {
         $name = $this->validateAttributeName($name);
         unset($this->attributes[$name]);
         return $this;
     }
 
-    public function setAttributes(array $attributes)
+    public function setAttributes(array $attributes):  Element
     {
         array_walk($attributes, function ($value, $key) {
             $this->setAttribute($key, $value);
@@ -41,13 +43,13 @@ trait ElementBehavior
         return $this;
     }
 
-    public function hasAttribute(string $name)
+    public function hasAttribute(string $name): bool
     {
         $name = $this->validateAttributeName($name);
         return isset($this->attributes[$name]);
     }
 
-    public function validateAttributeName(string $name)
+    public function validateAttributeName(string $name): string
     {
         if (preg_match('/([\t\n\f \/>\"\'=]+)/', $name)) {
             throw new \Exception("Invalid character in attribute name");
@@ -60,7 +62,7 @@ trait ElementBehavior
         return strtolower($name);
     }
 
-    public function renderAttribute(string $name)
+    public function renderAttribute(string $name): string
     {
         $name = $this->validateAttributeName($name);
         $value = $this->attributes[$name];
@@ -72,11 +74,11 @@ trait ElementBehavior
 
         return '';
     }
-    public function renderAttributes()
+    public function renderAttributes(): string
     {
         return array_reduce(array_keys($this->attributes), function ($renderString, $key) {
             return $renderString . $this->renderAttribute($key);
-        });
+        }) ?? '';
     }
 
     public function classList(): ClassList

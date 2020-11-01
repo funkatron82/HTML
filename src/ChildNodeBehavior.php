@@ -102,10 +102,10 @@ abstract class ChildNodeBehavior
         $this->previous = null;
     }
 
-    public function addBefore(ChildNode ...$nodes)
+    public function addBefore(ChildNode ...$nodes): ChildNode
     {
         if (!($this->parent instanceof ParentNode)) {
-            return;
+            return $this;
         }
 
         while ($node = array_shift($nodes)) {
@@ -116,12 +116,14 @@ abstract class ChildNodeBehavior
             $node->previous->next = $node;
             $node->parent = $this->parent;
         }
+
+        return $this;
     }
 
-    public function addAfter(ChildNode ...$nodes)
+    public function addAfter(ChildNode ...$nodes): ChildNode
     {
         if (!($this->parent instanceof ParentNode)) {
-            return;
+            return $this;
         }
 
         while ($node = array_pop($nodes)) {
@@ -132,6 +134,8 @@ abstract class ChildNodeBehavior
             $node->next->previous = $node;
             $node->parent = $this->parent;
         }
+
+        return $this;
     }
 
     public function replaceWith(ChildNode ...$nodes)

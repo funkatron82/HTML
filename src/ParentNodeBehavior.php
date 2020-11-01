@@ -15,14 +15,16 @@ trait ParentNodeBehavior
         $this->sentinel->setParent($this);
     }
 
-    public function append(ChildNode ...$nodes)
+    public function append(ChildNode ...$nodes): ParentNode
     {
         $this->sentinel->addBefore(...$nodes);
+        return $this;
     }
 
-    public function prepend(ChildNode ...$nodes)
+    public function prepend(ChildNode ...$nodes): ParentNode
     {
         $this->sentinel->addAfter(...$nodes);
+        return $this;
     }
 
     public function firstChild(): ?ChildNode

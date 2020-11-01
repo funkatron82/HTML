@@ -1,25 +1,27 @@
 <?php
 namespace CEC\HTML\Contracts;
 
+use CEC\HTML\ClassList;
+
 interface Element
 {
-    public function getAttribute(string $name);
+    public function getAttribute(string $name): string;
 
-    public function setAttribute(string $name, $value);
+    public function setAttribute(string $name, $value): self;
 
-    public function removeAttribute(string $name);
+    public function removeAttribute(string $name): self;
 
-    public function setAttributes(array $attributes);
+    public function setAttributes(array $attributes): self;
 
-    public function hasAttribute(string $name);
+    public function hasAttribute(string $name): bool;
 
-    public function validateAttributeName(string $name);
+    public function validateAttributeName(string $name): string;
 
-    public function renderAttribute(string $name);
+    public function renderAttribute(string $name): string;
 
-    public function renderAttributes();
+    public function renderAttributes(): string;
 
-    public function classList();
+    public function classList(): ClassList;
 
     public function setTagName(string $tagName);
 }

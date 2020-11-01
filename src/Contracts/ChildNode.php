@@ -21,9 +21,9 @@ interface ChildNode
 
     public function remove();
 
-    public function addBefore(ChildNode ...$nodes);
+    public function addBefore(ChildNode ...$nodes): ChildNode;
 
-    public function addAfter(ChildNode ...$nodes);
+    public function addAfter(ChildNode ...$nodes): ChildNode;
 
     public function replaceWith(ChildNode ...$nodes);
 }

@@ -17,7 +17,7 @@ interface ParentNode
 
     public function count(): int;
 
-    public function append(ChildNode ...$nodes);
+    public function append(ChildNode ...$nodes): ParentNode;
 
-    public function prepend(ChildNode ...$nodes);
+    public function prepend(ChildNode ...$nodes): ParentNode;
 }
