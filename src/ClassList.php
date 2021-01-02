@@ -11,9 +11,7 @@ class ClassList
     {
         $this->element = $element;
         $text = $this->element->getAttribute('class');
-        $text = trim($text);
-        $tokens = preg_split('/\s+/', $text);
-        $tokens = array_filter($tokens);
+        $tokens = preg_split('/\s+/', $text, -1, PREG_SPLIT_NO_EMPTY);
         $this->add($tokens);
     }
 
