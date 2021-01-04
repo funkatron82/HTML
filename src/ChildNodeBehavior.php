@@ -23,7 +23,12 @@ abstract class ChildNodeBehavior
         if (!($this->parent instanceof ParentNode)) {
             return null;
         }
-        return ($this->previous instanceof Sentinel) ? null : $this->previous;
+
+        if ($this->previous instanceof Sentinel) {
+            return null;
+        }
+
+        return $this->previous;
     }
 
     public function nextSibling(): ?ChildNode
@@ -31,7 +36,12 @@ abstract class ChildNodeBehavior
         if (!($this->parent instanceof ParentNode)) {
             return null;
         }
-        return ($this->next instanceof Sentinel) ? null : $this->next;
+
+        if ($this->next instanceof Sentinel) {
+            return null;
+        }
+
+        return  $this->next;
     }
 
     public function siblings(callable $where = null): \Generator
@@ -71,11 +81,11 @@ abstract class ChildNodeBehavior
     public function ancestors(callable $where = null): \Generator
     {
         $parent = $this->parent;
-        while ($parent instanceof ChildNode) {
+        while ($parent) {
             if ($where === null || $where($p)) {
                 yield $parent;
             }
-            $parent = $parent->parent;
+            $parent = ($parent instanceof ChildNode) ? $parent->parent : null;
         }
     }
 
