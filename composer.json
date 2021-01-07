@@ -14,15 +14,12 @@
 
     "autoload": {
         "psr-4": {
-            "\CEC\\HTML\\": "src/",
-            "\CEC\\HTML\\Tests\\": "tests/"
+            "CEC\\HTML\\": "src/",
+            "CEC\\HTML\\Tests\\": "tests/"
         }
     },
     "require": {
       "php": ">=7.2.5"
     },
 
-    "require-dev": {
-      "joshtronic/php-loremipsum": "dev-master"
-    }
 }
