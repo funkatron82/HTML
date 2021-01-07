@@ -12,7 +12,7 @@ class ClassList
         $this->element = $element;
         $text = $this->element->getAttribute('class');
         $tokens = preg_split('/\s+/', $text, -1, PREG_SPLIT_NO_EMPTY);
-        $this->add($tokens);
+        $this->add(...$tokens);
     }
 
     public function validate(string $token)
