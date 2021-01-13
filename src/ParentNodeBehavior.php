@@ -45,7 +45,7 @@ trait ParentNodeBehavior
                 if ($count === $index) {
                     return $current;
                 }
-                $current->previousSibling();
+                $current = $current->previousSibling();
                 $count--;
             }
 
@@ -58,7 +58,7 @@ trait ParentNodeBehavior
             if ($count === $index) {
                 return $current;
             }
-            $current->nextSibling();
+            $current = $current->nextSibling();
             $count++;
         }
 
