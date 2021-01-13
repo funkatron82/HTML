@@ -1,7 +1,7 @@
 <?php
 namespace CEC\HTML;
 
-use CEC\HTML\Contracts\Element;
+use Contracts\Element;
 
 trait ElementBehavior
 {

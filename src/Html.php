@@ -1,11 +1,11 @@
 <?php
 namespace CEC\HTML;
 
-use CEC\HTML\Contracts\Renderable;
-use CEC\HTML\Contracts\ChildNode;
-use CEC\HTML\Contracts\ParentNode;
-use CEC\HTML\Contracts\Element;
-use CEC\HTML\Contracts\CharacterData;
+use Contracts\Renderable;
+use Contracts\ChildNode;
+use Contracts\ParentNode;
+use Contracts\Element;
+use Contracts\CharacterData;
 
 class Html
 {
