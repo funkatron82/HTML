@@ -42,6 +42,7 @@ trait ParentNodeBehavior
             $current = $this->lastChild();
             $count = -1;
             while ($current && $count >= $index) {
+                echo $count;
                 if ($count === $index) {
                     return $current;
                 }
