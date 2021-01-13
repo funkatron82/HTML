@@ -36,6 +36,35 @@ trait ParentNodeBehavior
         return $this->sentinel->previousSibling();
     }
 
+    public function childAt(int $index): ?ChildNide
+    {
+        if ($index < 0) {
+            $current = $this->lastChild();
+            $count = -1;
+            while ($current && $count >= $index) {
+                if ($count === $index) {
+                    return $current;
+                }
+                $current->previousSibling();
+                $count--;
+            }
+
+            return null;
+        }
+
+        $current = $this->firstChild();
+        $count = 0;
+        while ($current && $count <= $index) {
+            if ($count === $index) {
+                return $current;
+            }
+            $current->nextSibling();
+            $count++;
+        }
+
+        return null;
+    }
+
     public function children(callable $where = null): \Generator
     {
         $next = $this->firstChild();

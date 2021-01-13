@@ -7,6 +7,8 @@ interface ParentNode
 
     public function lastChild(): ?ChildNode;
 
+    public function childAt(int $index): ?ChildNode;
+
     public function children(callable $where = null): \Generator;
 
     public function child(callable $where = null): ?ChildNode;
