@@ -1,8 +1,8 @@
 <?php
 namespace CEC\HTML;
 
-use Contracts\ChildNode;
-use Contracts\ParentNode;
+use CEC\HTML\Contracts\ChildNode;
+use CEC\HTML\Contracts\ParentNode;
 
 trait ParentNodeBehavior
 {

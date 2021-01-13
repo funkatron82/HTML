@@ -1,9 +1,9 @@
 <?php
 namespace CEC\HTML;
 
-use Contracts\Renderable;
-use Contracts\ChildNode;
-use Contracts\CharacterData;
+use CEC\HTML\Contracts\Renderable;
+use CEC\HTML\Contracts\ChildNode;
+use CEC\HTML\Contracts\CharacterData;
 
 /**
  * A renderable object that renders into text

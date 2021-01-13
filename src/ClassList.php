@@ -1,7 +1,7 @@
 <?php
 namespace CEC\HTML;
 
-use Contracts\Element;
+use CEC\HTML\Contracts\Element;
 
 class ClassList
 {
