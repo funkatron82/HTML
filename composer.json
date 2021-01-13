@@ -14,10 +14,10 @@
 
     "autoload": {
         "psr-4": {
-            "CEC\\HTML\\": "src",
-            "CEC\\HTML\\Tests\\": "tests"
+            "CEC\\HTML\\": "src/"
         }
     },
+
     "require": {
       "php": ">=7.2.5"
     }
