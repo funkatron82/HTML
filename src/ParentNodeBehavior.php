@@ -46,8 +46,6 @@ trait ParentNodeBehavior
                     return $current;
                 }
                 $current->previousSibling();
-
-                echo var_dump($current);
                 $count--;
             }
 
