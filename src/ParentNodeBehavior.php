@@ -36,7 +36,7 @@ trait ParentNodeBehavior
         return $this->sentinel->previousSibling();
     }
 
-    public function childAt(int $index): ?ChildNide
+    public function childAt(int $index): ?ChildNode
     {
         if ($index < 0) {
             $current = $this->lastChild();
