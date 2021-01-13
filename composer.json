@@ -11,16 +11,13 @@
       "homepage": "http://crosseyecode.com"
   }],
 
-  "autoload":
-  {
-    "psr-4":
-    {
+  "autoload": {
+    "psr-4": {
       "CEC\\HTML\\": "src/"
     }
   },
 
-  "require":
-  {
+  "require": {
     "php": ">=7.2.5"
   }
 
