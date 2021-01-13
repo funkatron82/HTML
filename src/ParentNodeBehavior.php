@@ -41,12 +41,13 @@ trait ParentNodeBehavior
         if ($index < 0) {
             $current = $this->lastChild();
             $count = -1;
-            while ($current && $count >= $index) {
-                echo $count;
+            while ($current && $count > $index) {
                 if ($count === $index) {
                     return $current;
                 }
                 $current->previousSibling();
+
+                echo var_dump($current);
                 $count--;
             }
 
