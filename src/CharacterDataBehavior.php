@@ -7,7 +7,7 @@ trait CharacterDataBehavior
 
     public function appendData(string $data)
     {
-        $this->data .= htmlspecialchars((string) $data, ENT_COMPAT | ENT_HTML5);
+        $this->data .= htmlspecialchars($data, ENT_COMPAT | ENT_HTML5);
     }
 
     public function deleteData(int $offset)
