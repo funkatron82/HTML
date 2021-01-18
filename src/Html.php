@@ -59,4 +59,16 @@ class Html
     {
         return new Comment($data);
     }
+
+    public function createFragment()
+    {
+        return new class(new Sentinel()) implements ParentNode {
+            use ParentNodeBehavior;
+
+            public function __construct(Sentinel $sentinel)
+            {
+                $this->setSentinel($sentinel);
+            }
+        };
+    }
 }
