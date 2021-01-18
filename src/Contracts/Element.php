@@ -24,4 +24,6 @@ interface Element
     public function classList(): ClassList;
 
     public function setTagName(string $tagName);
+
+    public function tagName(): ?string;
 }

@@ -11,7 +11,6 @@ trait ElementBehavior
     public function getAttribute(string $name): string
     {
         $name = $this->validateAttributeName($name);
-
         return $this->attributes[$name] ?? '';
     }
 
@@ -34,7 +33,7 @@ trait ElementBehavior
         return $this;
     }
 
-    public function setAttributes(array $attributes):  Element
+    public function setAttributes(array $attributes): Element
     {
         array_walk($attributes, function ($value, $key) {
             $this->setAttribute($key, $value);
@@ -93,5 +92,10 @@ trait ElementBehavior
             throw new Exception("Invalid character in tag name.");
         }
         $this->tagName = $tagName;
+    }
+
+    public function tagName(): ?string
+    {
+        return $this->tagName;
     }
 }
