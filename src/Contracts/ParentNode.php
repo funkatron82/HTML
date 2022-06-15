@@ -1,4 +1,5 @@
 <?php
+
 namespace CEC\HTML\Contracts;
 
 interface ParentNode
@@ -9,11 +10,11 @@ interface ParentNode
 
     public function childAt(int $index): ?ChildNode;
 
-    public function children(callable $where = null): \Generator;
+    public function children(callable $where = null): \iterator;
 
     public function child(callable $where = null): ?ChildNode;
 
-    public function descendents(callable $where = null): \Generator;
+    public function descendents(callable $where = null): \iterator;
 
     public function descendent(callable $where = null): ?ChildNode;
 

@@ -1,4 +1,5 @@
 <?php
+
 namespace CEC\HTML;
 
 use CEC\HTML\Contracts\ChildNode;
@@ -65,7 +66,7 @@ trait ParentNodeBehavior
         return null;
     }
 
-    public function children(callable $where = null): \Generator
+    public function children(callable $where = null): \iterator
     {
         $next = $this->firstChild();
         while ($next) {
@@ -84,7 +85,7 @@ trait ParentNodeBehavior
         return null;
     }
 
-    public function descendents(callable $where = null): \Generator
+    public function descendents(callable $where = null): \iterator
     {
         $next = $this->firstChild();
         while ($next) {

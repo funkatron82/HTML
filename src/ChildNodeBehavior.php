@@ -1,4 +1,5 @@
 <?php
+
 namespace CEC\HTML;
 
 use CEC\HTML\Contracts\ChildNode;
@@ -43,7 +44,7 @@ abstract class ChildNodeBehavior
         return  $this->next;
     }
 
-    public function siblings(callable $where = null): \Generator
+    public function siblings(callable $where = null): \iterator
     {
         if (!($this->parent instanceof ParentNode)) {
             return;
@@ -77,7 +78,7 @@ abstract class ChildNodeBehavior
         return $root;
     }
 
-    public function ancestors(callable $where = null): \Generator
+    public function ancestors(callable $where = null): \iterator
     {
         $parent = $this->parent;
         while ($parent) {
