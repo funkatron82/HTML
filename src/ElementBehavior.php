@@ -1,4 +1,5 @@
 <?php
+
 namespace CEC\HTML;
 
 use CEC\HTML\Contracts\Element;
@@ -89,7 +90,7 @@ trait ElementBehavior
     {
         $tagName = strtolower($tagName);
         if (preg_match("/[^a-z0-9]/", $tagName)) {
-            throw new Exception("Invalid character in tag name.");
+            throw new \Exception("Invalid character in tag name.");
         }
         $this->tagName = $tagName;
     }

@@ -80,12 +80,12 @@ abstract class ChildNodeBehavior
 
     public function ancestors(callable $where = null): \iterator
     {
-        $parent = $this->parent;
-        while ($parent) {
-            if ($where === null || $where($p)) {
-                yield $parent;
+        $ancestor = $this->parent;
+        while ($ancestor) {
+            if ($where === null || $where($ancestor)) {
+                yield $ancestor;
             }
-            $parent = ($parent instanceof ChildNode) ? $parent->parent : null;
+            $ancestor = ($ancestor instanceof ChildNode) ? $ancestor->parent : null;
         }
     }
 
@@ -112,10 +112,10 @@ abstract class ChildNodeBehavior
         $this->previous = null;
     }
 
-    public function addBefore(ChildNode ...$nodes): ChildNode
+    public function addBefore(ChildNode ...$nodes)
     {
         if (!($this->parent instanceof ParentNode)) {
-            return $this;
+            return;
         }
 
         while ($node = array_shift($nodes)) {
@@ -126,14 +126,12 @@ abstract class ChildNodeBehavior
             $node->previous->next = $node;
             $node->parent = $this->parent;
         }
-
-        return $this;
     }
 
-    public function addAfter(ChildNode ...$nodes): ChildNode
+    public function addAfter(ChildNode ...$nodes)
     {
         if (!($this->parent instanceof ParentNode)) {
-            return $this;
+            return;
         }
 
         while ($node = array_pop($nodes)) {
@@ -144,8 +142,6 @@ abstract class ChildNodeBehavior
             $node->next->previous = $node;
             $node->parent = $this->parent;
         }
-
-        return $this;
     }
 
     public function replaceWith(ChildNode ...$nodes)
